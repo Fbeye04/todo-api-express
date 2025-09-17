@@ -76,10 +76,7 @@ app.put("/tasks/:id", async (req, res) => {
       where: { id: id },
       data: updatedData,
     });
-    res.status(200).json({
-      message: `Task with ID ${id} updated successfully`,
-      task: updatedTask,
-    });
+    res.status(200).json(updatedTask);
   } catch (error) {
     res
       .status(404)
