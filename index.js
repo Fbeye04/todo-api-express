@@ -46,10 +46,7 @@ app.post("/tasks", async (req, res) => {
         isDone: newTaskData.isDone || false,
       },
     });
-    res.status(201).json({
-      message: "Task created successfully",
-      task: newTask,
-    });
+    res.status(201).json(newTask);
   } catch (error) {
     res.status(500).json({ error: "Failed to create new task" });
   }
