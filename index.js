@@ -68,6 +68,22 @@ app.delete("/tasks/:id", async (req, res) => {
   }
 });
 
+app.delete("/tasks/completed", async (req, res) => {
+  try {
+    await prisma.task.deleteMany({
+      where: {
+        isDone: true,
+      },
+    });
+    res
+      .status(200)
+      .json({ message: "All completed tasks deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting completed tasks:", error);
+    res.status(500).json({ error: "Failed to delete completed tasks" });
+  }
+});
+
 app.put("/tasks/:id", async (req, res) => {
   try {
     const { id } = req.params;
